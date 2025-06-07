@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lm
 
 # dirs
 ROOT = .
@@ -17,13 +17,13 @@ OBJECTS_GRAPH = $(addprefix $(BUILD_DIR)/, \
 graph: $(TARGET_GRAPH)
 
 $(TARGET_GRAPH): $(OBJECTS_GRAPH)
-	$(CC) $(CFLAGS) -lm $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 # general purposes
 all: graph
 
 clean:
-	find $(BUILD_DIR) -type f --not-name .gitkeep -exec rm -f {} \;
+	find $(BUILD_DIR) -type f ! -name .gitkeep -exec rm -f {} \;
 
 rebuild: clean all
 
@@ -32,6 +32,6 @@ rebuild: clean all
 # general rules of compilation
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean rebuild graph

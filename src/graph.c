@@ -3,10 +3,18 @@
 #include <string.h>
 #include <math.h>
 
-int main() {
-    input();
+int main(void) {
+    char *expression;
 
-    
+    if(!input(expression)) {
+        printf
+    }
 
-    render();
+    extract_operations();
+
+    // render();
+
+    return 0;
 }
+
+void 
